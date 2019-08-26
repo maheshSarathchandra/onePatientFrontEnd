@@ -1,0 +1,34 @@
+<!DOCTYPE html>
+<html lang="en">
+<head>
+    <meta charset="UTF-8">
+    <title></title>
+</head>
+<body>
+<div class="patient-content">
+  <h1 class="page-title">My Patient</h1>
+  <div class="patient-create">
+    <form #patientForm="ngForm" (ngSubmit) = "createPatient(patientForm)" novalidate>
+      <input type="text" id="name" class="form-control" placeholder="Type a  and press enter..."
+             required
+             name="name" [(ngModel)]="newPatient.name"
+             #name="ngModel" >
+      <div *ngIf="name.errors && name.dirty"
+           class="alert alert-danger">
+        <div [hidden]="!name.errors.required">
+          Title is required.
+        </div>
+      </div>
+      <div padding>
+        <button ion-button color="primary" block type="submit" [disabled]="!patientForm.valid">createPatient</button>
+      </div>
+    </form>
+  </div>
+</div>
+<ul>
+<li *ngFor="let patient of patient">
+  {{patient.name}}
+</li>
+</ul>
+</body>
+</html>
